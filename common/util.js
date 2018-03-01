@@ -1,7 +1,6 @@
 const calcul_distance = (x1, y1, x2, y2) => Math.abs(x1 - x2) + Math.abs(y1 - y2)
 
 module.exports.calcul_distance = calcul_distance
-//module.exports.howLong = howLong
 /**
  * a position abscisse vehicule
  * b position ord vehicule
@@ -27,5 +26,4 @@ const howLong = (a, b, x, y, currentStep, earlier, finish) => {
   } //distance pour y aller (positif)
 }
 
-console.log(howLong(0, 1, 1, 3, 0, 4, 7))
-console.log(calcul_distance(0, 1, 1, 3))
+module.exports.howLong = howLong

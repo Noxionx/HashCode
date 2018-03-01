@@ -1,6 +1,7 @@
 var util = require('./util')
 
 module.exports.browseBySteps = ({ cars, rides, T }) => {
+  console.log(cars)
   let step = 0
 
   while (step <= T) {
@@ -24,6 +25,7 @@ module.exports.browseBySteps = ({ cars, rides, T }) => {
 
     step++
   }
+  console.log(cars)
 
   return cars
 }
