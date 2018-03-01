@@ -1,7 +1,7 @@
 const calcul_distance = (x1, y1, x2, y2) => Math.abs(x1 - x2) + Math.abs(y1 - y2)
 
 module.exports.calcul_distance = calcul_distance
-
+//module.exports.howLong = howLong
 /**
  * a position abscisse vehicule
  * b position ord vehicule
@@ -10,11 +10,11 @@ module.exports.calcul_distance = calcul_distance
  * earlier
  * finish
  */
-module.exports.howLong = (a, b, x, y, currentStep, earlier, finish) => {
+const howLong = (a, b, x, y, currentStep, earlier, finish) => {
   dist = calcul_distance(a, b, x, y)
   distRestante = dist + currentStep
   if (distRestante === earlier) {
-    return 0
+    return Number.NEGATIVE_INFINITY
   } //arriver pile poile retour 0 (BONUS)
   if (distRestante < earlier) {
     return Math.pow(earlier - distRestante, 2)
@@ -26,3 +26,6 @@ module.exports.howLong = (a, b, x, y, currentStep, earlier, finish) => {
     return distRestante
   } //distance pour y aller (positif)
 }
+
+console.log(howLong(0, 1, 1, 3, 0, 4, 7))
+console.log(calcul_distance(0, 1, 1, 3))
