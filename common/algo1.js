@@ -1,26 +1,29 @@
 var util = require('./util')
 
-module.exports.browseBySteps = ({ cars, rides }) => {
-  //rides possibles
-  availableRides = rides.filter(ride => ride.isDone === false)
+module.exports.browseBySteps = ({ cars, rides, T }) => {
+  let step = 0
 
-  // Pour chaque voiture
-  cars.forEach(car => {
-    //calcul score
-    availableRides.map(
-      (ride, index) => (ride.score = util.howLong(car.curx, car.cury, car.t, ride.st, ride.ft))
-    )
+  while (step <= T) {
+    // Pour chaque voiture
+    cars.filter(car => car.t === step).forEach(car => {
+      //rides possibles
+      const availableRides = rides.filter(ride => !ride.isDone)
+      availableRides.forEach(ride => {
+        ride.score = util.howLong(car.curx, car.cury, car.t, ride.st, ride.ft)
+      })
+      availableRides.sort((a, b) => a.score - b.score)
 
-    //tri
-    availableRides.sort(function(a, b) {
-      return a.score - b.score
+      if (availableRides.length > 0) {
+        car.t = util.calcul_distance(car.curx, car.cury, rides[0].sx, rides[0].sx)
+        car.curx = rides[0].fx
+        car.cury = rides[0].fy
+        car.rides.push(rides[0].id)
+        availableRides.shift()
+      }
     })
 
-    if (availableRides.length > 0) {
-      car.rides.push(rides[0].id)
-      availableRides.splice(0, 1)
-    }
-  })
+    step++
+  }
 
   return cars
 }

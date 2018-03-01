@@ -10,7 +10,7 @@ module.exports.calcul_distance = calcul_distance
  * earlier
  * finish
  */
-module.exports.howLong = ({ a, b, x, y, currentStep, earlier, finish }) => {
+module.exports.howLong = (a, b, x, y, currentStep, earlier, finish) => {
   dist = calcul_distance(a, b, x, y)
   distRestante = dist + currentStep
   if (distRestante === earlier) {
