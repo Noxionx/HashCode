@@ -17,7 +17,7 @@ module.exports.howLong = ({ a, b, x, y, currentStep, earlier, finish }) => {
     return 0
   } //arriver pile poile retour 0 (BONUS)
   if (distRestante < earlier) {
-    return Math.pow(earlier - distRestante, 2)
+    return Math.abs(earlier - distRestante)
   } // arriver tôt (negatif)
   if (distRestante > finish) {
     return Number.POSITIVE_INFINITY
