@@ -20,6 +20,4 @@ module.exports.howLong = ({a,b,x,y,currentStep,earlier, finish}) => {
 
 }
 
-module.exports
-
 
