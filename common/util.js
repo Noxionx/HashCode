@@ -9,7 +9,7 @@ module.exports.calcul_distance = ({x1,y1,x2,y2}) => Math.abs(x1-x2) + Math.abs(y
  * earlier
  * finish
  */
-module.exports.howLong = (a,b,x,y,earlier, finish) => {
+module.exports.howLong = ({a,b,x,y,earlier, finish}) => {
     
     dist =  calcul_distance(a,b,x,y) ;
     if(dist === earlier){return 0} //arriver pile poile retour 0 (BONUS)
