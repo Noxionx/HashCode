@@ -29,7 +29,7 @@ const main = data => {
     })
     .sort((a, b) => a.st - b.st)
 
-  const cars = Array(F).fill({
+  const cars = new Array(Number(F)).fill({
     rides: [],
     curx: 0,
     cury: 0,
