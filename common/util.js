@@ -24,5 +24,3 @@ module.exports.howLong = ({ a, b, x, y, currentStep, earlier, finish }) => {
     return distRestante
   } //distance pour y aller (positif)
 }
-
-module.exports
