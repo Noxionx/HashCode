@@ -29,7 +29,4 @@ module.exports.browseBySteps = (cars, rides) => {
 
         });
         
-    });
-
-
-}
+    }
