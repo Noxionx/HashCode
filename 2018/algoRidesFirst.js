@@ -2,20 +2,21 @@ const util = require('../common/util')
 
 module.exports = infos => {
   for (const ride of infos.rides) {
-    let maxStep = math.min(rides.ft, ride.t)
+    let maxStep = Math.min(ride.ft, infos.t)
     let bestChoice = {}
     for (const car of infos.cars) {
-      let note = calcHeuristic(car)
-      if (maxStep > note && (!bestChoice.car || bestChoice.note > note)) {
+      let note = calcHeuristic(car, ride)
+      if (maxStep >= note && (!bestChoice.car || bestChoice.note > note)) {
         bestChoice.car = car
         bestChoice.note = note
       }
     }
 
     if (bestChoice.car) {
-      bestChoice.car.rides.push(ride.id)
+      validBestChoice(ride, bestChoice.car, bestChoice.note)
     }
   }
+  console.log(infos.cars)
   return infos.cars
 }
 
