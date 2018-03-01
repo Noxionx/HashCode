@@ -14,10 +14,10 @@ module.exports.howLong = ({ a, b, x, y, currentStep, earlier, finish }) => {
   dist = calcul_distance(a, b, x, y)
   distRestante = dist + currentStep
   if (distRestante === earlier) {
-    return 0
+    return Number.NEGATIVE_INFINITY
   } //arriver pile poile retour 0 (BONUS)
   if (distRestante < earlier) {
-    return Math.abs(earlier - distRestante)
+    return Math.pow(earlier - distRestante,2)
   } // arriver tôt (negatif)
   if (distRestante > finish) {
     return Number.POSITIVE_INFINITY
