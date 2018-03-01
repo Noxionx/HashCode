@@ -10,13 +10,11 @@ const log = x => {
   return x
 }
 
-module.exports.log = log
-
 /**
  * Return a string to display how many files processed
  * @param {string[][]} files array contains files data
  */
 
-const doneMessage = files => `${R.length(files)} files processed`
+const done = files => `${R.length(files)} files processed`
 
-module.exports.done = doneMessage
+module.exports = { log, done }

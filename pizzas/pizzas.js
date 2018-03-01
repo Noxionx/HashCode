@@ -1,5 +1,5 @@
 const R = require('ramda')
 
-const main = R.identity
+const pizzas = R.identity
 
-module.exports = main
+module.exports = { pizzas }

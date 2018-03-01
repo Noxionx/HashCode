@@ -1,7 +1,7 @@
 const R = require('ramda')
 const fs = require('fs')
 
-const processFile = require('./processFile')
+const { processFile } = require('./processFile')
 
 /**
  * Process all files in inputs directory
@@ -22,4 +22,4 @@ const processAll = fn => {
   })
 }
 
-module.exports = processAll
+module.exports = { processAll }

@@ -14,4 +14,4 @@ const writeFile = path => data => {
   })
 }
 
-module.exports = writeFile
+module.exports = { writeFile }

@@ -3,15 +3,13 @@ const title = 'Duration'
 
 /**
  * Start the main chrono then return the main function
- * @param {*} fn Main function to call after chrono started
+ * @param {function} fn Main function to call after chrono started
  */
 
 const start = fn => {
   console.time(title)
   return fn
 }
-
-module.exports.start = start
 
 /**
  * Terminate and log the main chrono
@@ -23,4 +21,4 @@ const done = files => {
   console.timeEnd(title)
 }
 
-module.exports.done = done
+module.exports = { start, done }

@@ -1,6 +1,6 @@
 const { start, done } = require('../common/timeAll')
-const processAll = require('../common/processAll')
-const pizzas = require('./pizzas')
+const { processAll } = require('../common/processAll')
+const { pizzas } = require('./pizzas')
 
 // Process all files in inputs directory
 // with "pizzas" transformation function.

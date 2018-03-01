@@ -1,6 +1,6 @@
 /**
  * Return processed data with specified function
- * @param {*} fn The transformation function
+ * @param {function} fn The transformation function
  * @param {any} data Data to transform
  */
 
@@ -14,4 +14,4 @@ const processData = fn => data => {
   })
 }
 
-module.exports = processData
+module.exports = { processData }
