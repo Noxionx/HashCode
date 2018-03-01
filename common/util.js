@@ -12,7 +12,6 @@ module.exports.calcul_distance = calcul_distance
  */
 const howLong = ( a, b, x, y, currentStep, earlier, finish ) => {
   dist = calcul_distance(a, b, x, y)
-  console.log(dist);
   distRestante = dist + currentStep
   if (distRestante === earlier) {
     return Number.NEGATIVE_INFINITY
@@ -29,5 +28,5 @@ const howLong = ( a, b, x, y, currentStep, earlier, finish ) => {
 }
 
 
-//console.log(howLong(0,1,1,3,0,4,7));
-//console.log(calcul_distance(0,1,1,3));
+console.log(howLong(0,1,1,3,0,4,7));
+console.log(calcul_distance(0,1,1,3));
