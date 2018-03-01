@@ -1,4 +1,5 @@
 const algoRidesFirst = require('./algoRidesFirst')
+const { browseBySteps } = require('../common/algo1')
 
 const main = data => {
   const lines = data.split('\n')
@@ -46,7 +47,8 @@ const main = data => {
     T
   }
 
-  return algoRidesFirst(obj)
+  //return algoRidesFirst(obj)
+  return browseBySteps(obj)
     .map(val => [...val.rides].join(' '))
     .join('\n')
 }
