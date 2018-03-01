@@ -1,4 +1,4 @@
-const R = require('ramda')
+const algoRidesFirst = require('./algoRidesFirst')
 
 const main = data => {
   const lines = data.split('\n')
@@ -46,7 +46,9 @@ const main = data => {
     T
   }
 
-  return obj
+  return algoRidesFirst(obj)
+    .map(val => [...val.rides].join(' '))
+    .join('\n')
 }
 
 module.exports = { main }
