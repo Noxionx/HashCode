@@ -1,3 +1,1 @@
-module.exports.calcul_distance = ({x1,y1,x2,y2}) => Math.abs(x1-x2) + Math.abs(y1-y2);
-
-
+module.exports.calcul_distance = ({ x1, y1, x2, y2 }) => Math.abs(x1 - x2) + Math.abs(y1 - y2)
