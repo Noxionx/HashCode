@@ -10,8 +10,8 @@ module.exports.calcul_distance = calcul_distance
  * finish
  */
 const howLong = (a, b, x, y, currentStep, earlier, finish) => {
-  dist = calcul_distance(a, b, x, y)
-  distRestante = dist + currentStep
+  const distRestante = calcul_distance(a, b, x, y) + currentStep
+
   if (distRestante === earlier) {
     return Number.NEGATIVE_INFINITY
   } //arriver pile poile retour 0 (BONUS)
@@ -24,6 +24,7 @@ const howLong = (a, b, x, y, currentStep, earlier, finish) => {
   if (distRestante <= finish && distRestante > earlier) {
     return distRestante
   } //distance pour y aller (positif)
+  return 0
 }
 
 module.exports.howLong = howLong

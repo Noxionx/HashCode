@@ -1,31 +1,49 @@
 var util = require('./util')
 
 module.exports.browseBySteps = ({ cars, rides, T }) => {
-  console.log(cars)
   let step = 0
 
-  while (step <= T) {
-    // Pour chaque voiture
-    cars.filter(car => car.t === step).forEach(car => {
-      //rides possibles
-      const availableRides = rides.filter(ride => !ride.isDone)
-      availableRides.forEach(ride => {
-        ride.score = util.howLong(car.curx, car.cury, car.t, ride.st, ride.ft)
-      })
-      availableRides.sort((a, b) => a.score - b.score)
+  while (step < T) {
+    for (let i = 0; i < cars.length; i++) {
+      if (cars[i].t <= step) {
+        //rides possibles
+        const availableRides = rides
+          .filter(ride => !ride.isDone)
+          .map(ride => {
+            return {
+              ...ride,
+              score: util.howLong(
+                cars[i].curx,
+                cars[i].cury,
+                ride.sx,
+                ride.sy,
+                step,
+                ride.st,
+                ride.ft
+              )
+            }
+          })
+          .sort((a, b) => a.score - b.score)
 
-      if (availableRides.length > 0) {
-        car.t = util.calcul_distance(car.curx, car.cury, rides[0].sx, rides[0].sx)
-        car.curx = rides[0].fx
-        car.cury = rides[0].fy
-        car.rides.push(rides[0].id)
-        availableRides.shift()
+        const bestRide = availableRides[0]
+
+        if (availableRides.length > 0) {
+          cars[i].t =
+            util.calcul_distance(bestRide.sx, bestRide.sy, bestRide.fx, bestRide.fy) +
+            util.calcul_distance(cars[i].curx, cars[i].cury, bestRide.fx, bestRide.fy) +
+            step
+          cars[i].curx = bestRide.fx
+          cars[i].cury = bestRide.fy
+          cars[i].rides.push(bestRide.id)
+          rides[
+            rides.reduce((acc, ride, idx) => {
+              return bestRide.id === ride.id ? idx : acc
+            }, 0)
+          ].isDone = true
+        }
       }
-    })
-
+    }
     step++
   }
-  console.log(cars)
-
   return cars
 }

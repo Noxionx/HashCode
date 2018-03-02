@@ -1,4 +1,3 @@
-const algoRidesFirst = require('./algoRidesFirst')
 const { browseBySteps } = require('../common/algo1')
 
 const main = data => {
@@ -29,27 +28,27 @@ const main = data => {
     })
     .sort((a, b) => a.st - b.st)
 
-  const cars = new Array(Number(F)).fill({
+  const cars = new Array(Number(F)).fill(0).map(v => ({
     rides: [],
     curx: 0,
     cury: 0,
     t: 0
-  })
+  }))
 
   const obj = {
     rides,
     cars,
-    R,
-    C,
-    F,
-    N,
-    B,
-    T
+    R: Number(R),
+    C: Number(C),
+    F: Number(F),
+    N: Number(N),
+    B: Number(B),
+    T: Number(T)
   }
 
   //return algoRidesFirst(obj)
   return browseBySteps(obj)
-    .map(val => [...val.rides].join(' '))
+    .map(val => [val.rides.length, ...val.rides].join(' '))
     .join('\n')
 }
 
