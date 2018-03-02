@@ -7,7 +7,6 @@ console.log(T);
   while (step <= T) {
     // Pour chaque voiture
     cars.filter(car => car.t === step).forEach(car => {
-        console.log(car.t);
       //rides possibles
       var availableRides = rides.filter(ride => !ride.isDone)
       availableRides.forEach(ride => {
@@ -16,7 +15,7 @@ console.log(T);
       availableRides.sort((a, b) => a.score - b.score)
 
       if (availableRides.length > 0) {
-        car.t += util.calcul_distance(availableRides[0].sx, availableRides[0].sy, availableRides[0].fx, availableRides[0].fy);
+        car.t = util.calcul_distance(availableRides[0].sx, availableRides[0].sy, availableRides[0].fx, availableRides[0].fy)+step;
         car.curx = availableRides[0].fx
         car.cury = availableRides[0].fy
         car.rides.push(availableRides[0].id)
