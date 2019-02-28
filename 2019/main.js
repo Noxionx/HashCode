@@ -1,4 +1,4 @@
-const { browseBySteps } = require('../common/algo1')
+const { browseBySteps } = require('../common/algo2')
 
 const main = data => {
   const lines = data.split('\n')
@@ -19,7 +19,7 @@ const main = data => {
     })
     //.sort((a, b) => a.nbTags - b.nbTags)
 
-    const slideshow = browseBySteps(photos, null, null);
+    const slideshow = browseBySteps(photos.filter(p => !p.isVertical), null, null);
     slideshow.unshift(slideshow.length);
     return slideshow.join('\n');
 }
