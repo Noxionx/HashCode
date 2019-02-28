@@ -1,49 +1,30 @@
+const R = require('ramda')
 var util = require('./util')
 
-module.exports.browseBySteps = ({ cars, rides, T }) => {
-  let step = 0
-
-  while (step < T) {
-    for (let i = 0; i < cars.length; i++) {
-      if (cars[i].t <= step) {
-        //rides possibles
-        const availableRides = rides
-          .filter(ride => !ride.isDone)
-          .map(ride => {
-            return {
-              ...ride,
-              score: util.howLong(
-                cars[i].curx,
-                cars[i].cury,
-                ride.sx,
-                ride.sy,
-                step,
-                ride.st,
-                ride.ft
-              )
-            }
-          })
-          .sort((a, b) => a.score - b.score)
-
-        const bestRide = availableRides[0]
-
-        if (availableRides.length > 0) {
-          cars[i].t =
-            util.calcul_distance(bestRide.sx, bestRide.sy, bestRide.fx, bestRide.fy) +
-            util.calcul_distance(cars[i].curx, cars[i].cury, bestRide.fx, bestRide.fy) +
-            step
-          cars[i].curx = bestRide.fx
-          cars[i].cury = bestRide.fy
-          cars[i].rides.push(bestRide.id)
-          rides[
-            rides.reduce((acc, ride, idx) => {
-              return bestRide.id === ride.id ? idx : acc
-            }, 0)
-          ].isDone = true
-        }
-      }
-    }
-    step++
+module.exports.browseBySteps = (photos, previousTags, slideshow) => {
+  if (!slideshow) {
+    slideshow = [];
   }
-  return cars
+
+  if (!previousTags) {
+    const photo1 = photos[0];
+    if (photo1.isVertical) {
+      // Trouve une deuxième image verticale
+      const photo2 = findFirtsVertical(photos.slice(1));
+      slideshow.push(`${photo1.id} ${photo2.id}`);
+      previousTags = R.union(photo1.tags, photo2.tags);
+    } else {
+      slideshow.push('' + photo1.id);
+      previousTags = photo1.tags;
+    }
+    return this.browseBySteps(photos.slice(1), previousTags, slideshow)
+  } else {
+    // Comparaison des tags
+    console.log(slideshow)
+    return slideshow;
+  }
+}
+
+function findFirtsVertical(photos) {
+  return photos.find(e => e.isVertical);
 }

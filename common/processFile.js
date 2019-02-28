@@ -13,7 +13,7 @@ const withoutExtension = R.compose(R.head, R.split('.'))
 
 const processFile = fn => name => {
   const clearName = withoutExtension(name)
-  const readInput = readFile(`./inputs/${clearName}.in`)
+  const readInput = readFile(`./inputs/${clearName}.txt`)
   const writeOutput = writeFile(`./outputs/${clearName}.out`)
 
   return new Promise((resolve, reject) => {
